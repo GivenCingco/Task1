@@ -1,0 +1,22 @@
+name: Check Hello World
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check_hello_world:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Check for Hello World
+      run: |
+        if grep -q "Hello World" ./index.html; then
+          echo "Hello World found!"
+        else
+          echo "Hello World not found!"
+          exit 1
+        fi
